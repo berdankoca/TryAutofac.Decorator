@@ -36,10 +36,11 @@ namespace TryAutoFac.Decorator
                 .RegisterType<Greeter>()
                 .As<IGreeter>()
                 .InstancePerDependency();
-
+            
+            //when you call IGreeter it return EnycreptorDecorator
             builder
                 .RegisterDecorator<EnycreptorGreetorDecorator, IGreeter>();
-
+            //after that if we will register new XDecorator, it return XDecorator and XDecorator run EnycreptorDecorator 
             IContainer container = builder.Build();
 
             return new AutofacServiceProvider(container);
